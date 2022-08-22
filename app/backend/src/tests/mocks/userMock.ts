@@ -3,6 +3,11 @@ export const userMockLogin = {
   password: 'secret_admin'
 }
 
+export const wrongUserMockLogin = { 
+  email: 'qualquer',
+  password: 'qualquer'
+}
+
 export const invalidUserMockLogin = {
   email: '',
   password: ''

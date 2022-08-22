@@ -7,7 +7,7 @@ import { app } from '../app';
 import Example from '../database/models/ExampleModel';
 
 import { Response } from 'superagent';
-import { userMock, userMockLogin, invalidUserMockLogin } from './mocks/userMock';
+import { userMock, userMockLogin, invalidUserMockLogin, wrongUserMockLogin } from './mocks/userMock';
 import User from '../database/models/User';
 
 chai.use(chaiHttp);
@@ -34,14 +34,18 @@ describe('Testar rota /login', () => {
     expect(response.status).to.equal(200)
   })
 
-  it('Se ao usar login e senha, retorna um token', async () => {
+  it('Se ao usar login e senha corretos, retorna um token', async () => {
     const response = await chai.request(app).post('/login').send(userMockLogin);
     expect(response.body).to.haveOwnProperty('token')
   })
 
-  it('Se ao usar um login ou senha incorretos retorna status 401', async () => {
+  it('Se ao não usar login e senha retorna status 400', async () => {
     const response = await chai.request(app).post('/login').send(invalidUserMockLogin);
-    expect(response.status).to.equal(401)
+    expect(response.status).to.equal(400)
+  })
+
+  it('Se ao usar login e senha incorretos, retorna status 401', async () => {
+    const response = await chai.request(app).post('/login').send(wrongUserMockLogin)
   })
 
 });
