@@ -15,4 +15,8 @@ export default class Jwt {
     const token = jwt.sign(user, process.env.JWT_SECRET || JWTSECRET, jwtConfig);
     return token;
   }
+
+  static validateToken(token: string) {
+    return jwt.verify(token, process.env.JWT_SECRET as string, jwtConfig);
+  }
 }

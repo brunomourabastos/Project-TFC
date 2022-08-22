@@ -1,6 +1,7 @@
 import userModel from '../models/User';
 import BcryptPassword from '../helpers/BcryptPassword';
 import Jwt from '../helpers/Token';
+import { IData } from '../interfaces/IData';
 
 export default class LoginService {
   static async login(email: string, password: string) {
@@ -20,5 +21,12 @@ export default class LoginService {
     const token = Jwt.createToken({ email, password });
 
     return { status: 200, message: { token } };
+  }
+
+  static async tokenAuth(token: string) {
+    const data = Jwt.validateToken(token) as IData;
+    const user = await userModel.findOne({ where: { email: data.email } }) as userModel;
+    console.log('estou aqui **********************************', user);
+    return user.role;
   }
 }

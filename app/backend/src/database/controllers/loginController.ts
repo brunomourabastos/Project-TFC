@@ -11,4 +11,14 @@ export default class LoginController {
       console.log(e);
     }
   }
+
+  static async validateToken(req: Request, res: Response) {
+    try {
+      const token = req.headers.authorization;
+      const data = await loginService.tokenAuth(token as string);
+      res.status(200).send({ role: data });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
