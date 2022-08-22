@@ -6,7 +6,7 @@ export default class LoginController {
     try {
       const { email, password } = req.body;
       const data = await loginService.login(email, password);
-      return res.status(200).json({ token: data });
+      return res.status(data.status).json(data.message);
     } catch (e) {
       console.log(e);
     }

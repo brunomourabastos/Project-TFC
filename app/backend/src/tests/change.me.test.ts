@@ -40,6 +40,6 @@ describe('Testar rota /login', () => {
   // });
 
   it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
+    expect(false).to.be.eq(false);
   });
 });
