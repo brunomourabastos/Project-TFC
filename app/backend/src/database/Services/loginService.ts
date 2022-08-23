@@ -26,7 +26,6 @@ export default class LoginService {
   static async tokenAuth(token: string) {
     const data = Jwt.validateToken(token) as IData;
     const user = await userModel.findOne({ where: { email: data.email } }) as userModel;
-    console.log('estou aqui **********************************', user);
     return user.role;
   }
 }

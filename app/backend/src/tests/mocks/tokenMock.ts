@@ -1,0 +1,1 @@
+export const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInBhc3N3b3JkIjoic2VjcmV0X2FkbWluIiwiaWF0IjoxNjYxMjExODg1LCJleHAiOjE2NjIwNzU4ODV9.E76nHyidlXlFrnb6U7ThFeMc_HV27YemO-C-sDEsSpk"

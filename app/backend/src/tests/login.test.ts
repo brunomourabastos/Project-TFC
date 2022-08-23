@@ -9,6 +9,7 @@ import Example from '../database/models/ExampleModel';
 import { Response } from 'superagent';
 import { userMock, userMockLogin, invalidUserMockLogin, wrongUserMockLogin } from './mocks/userMock';
 import User from '../database/models/User';
+import { tokenMock } from './mocks/tokenMock';
 
 chai.use(chaiHttp);
 
@@ -49,3 +50,24 @@ describe('Testar rota /login', () => {
   })
 
 });
+
+describe('Verifica rota /login/validate', () => {
+
+  beforeEach(() => {
+    sinon.stub(User, 'findOne').resolves(userMock as User)
+  })
+
+  afterEach(() => {
+    sinon.restore()
+  })
+
+  it('Retona a propriedade role ao informar token correto', async () => {
+    const response = await chai.request(app).get('/login/validate').set('Authorization', tokenMock).send()
+    expect(response.body).to.have.property('role')
+  })
+
+  it('Retorna status 200 ao validar token correto', async () => {
+    const response = await chai.request(app).get('/login/validate').set('Authorization', tokenMock).send()
+    expect(response.status).to.be.equal(200)
+  })
+})
