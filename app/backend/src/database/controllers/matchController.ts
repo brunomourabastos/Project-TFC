@@ -5,7 +5,7 @@ export default class matchController {
   static async getInProgress(req: Request, res: Response) {
     try {
       const { inProgress } = req.query;
-      if (!inProgress || inProgress === 'false') {
+      if (!inProgress) {
         const allMatches = await matchService.listAll();
         return res.status(allMatches.status).json(allMatches.data);
       }
