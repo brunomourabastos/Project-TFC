@@ -47,6 +47,12 @@ describe('Testar rota /login', () => {
 
   it('Se ao usar login e senha incorretos, retorna status 401', async () => {
     const response = await chai.request(app).post('/login').send(wrongUserMockLogin)
+    expect(response.status).to.equal(401)
+  })
+
+  it('Se ao utilizar login e senha incorretas, exibe mensagem', async () => {
+    const response = await chai.request(app).post('/login').send(wrongUserMockLogin)
+    expect(response.body.message).to.equal('Incorrect email or password')
   })
 
 });
