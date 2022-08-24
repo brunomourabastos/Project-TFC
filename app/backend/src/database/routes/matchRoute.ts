@@ -6,7 +6,7 @@ import VerifyTeam from '../middleware/verifyTeamMiddleware';
 const router = Router();
 
 router.get('/matches', matchController.getInProgress);
-router.post('/matches', VerifyTeam.equalTeam, AuthToken.authenticate, matchController.saveMatch);
+router.post('/matches', AuthToken.authenticate, VerifyTeam.equalTeam, matchController.saveMatch);
 router.patch('/matches/:id/finish', matchController.changeProgress);
 
 export default router;
