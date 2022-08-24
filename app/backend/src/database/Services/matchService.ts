@@ -43,4 +43,9 @@ export default class matchService {
     await matchModel.update({ inProgress: false }, { where: { id } });
     return { status: 200, data: { message: 'Finished' } };
   }
+
+  static async updateResult(id: string, homeTeamGoals: number, awayTeamGoals: number) {
+    await matchModel.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+    return { status: 200, data: { message: 'Updated' } };
+  }
 }
