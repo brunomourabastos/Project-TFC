@@ -15,4 +15,14 @@ export default class matchController {
       console.log(e);
     }
   }
+
+  static async saveMatch(req: Request, res: Response) {
+    try {
+      const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
+      const data = await matchService.saveMatch(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals);
+      return res.status(data.status).json(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }

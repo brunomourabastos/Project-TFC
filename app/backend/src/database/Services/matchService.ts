@@ -19,4 +19,18 @@ export default class matchService {
     });
     return { status: 200, data: matches };
   }
+
+  static async saveMatch(
+    homeTeam: number,
+    awayTeam: number,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  ) {
+    const createdMatch = await matchModel.create({ homeTeam,
+      awayTeam,
+      homeTeamGoals,
+      awayTeamGoals,
+      inProgress: true });
+    return { status: 201, data: createdMatch };
+  }
 }
