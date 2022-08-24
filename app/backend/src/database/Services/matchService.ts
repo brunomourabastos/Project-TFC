@@ -26,6 +26,11 @@ export default class matchService {
     homeTeamGoals: number,
     awayTeamGoals: number,
   ) {
+    if (homeTeam === awayTeam) {
+      return { status: 401,
+        data: {
+          message: 'It is not possible to create a match with two equal teams' } };
+    }
     const createdMatch = await matchModel.create({ homeTeam,
       awayTeam,
       homeTeamGoals,
