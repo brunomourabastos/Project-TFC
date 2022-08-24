@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import matchController from '../controllers/matchController';
 import AuthToken from '../middleware/authTokenMiddleware';
+import VerifyTeam from '../middleware/verifyTeamMiddleware';
 
 const router = Router();
 
 router.get('/matches', matchController.getInProgress);
-router.post('/matches', AuthToken.authenticate, matchController.saveMatch);
+router.post('/matches', VerifyTeam.equalTeam, AuthToken.authenticate, matchController.saveMatch);
 router.patch('/matches/:id/finish', matchController.changeProgress);
 
 export default router;
