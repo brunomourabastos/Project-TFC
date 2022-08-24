@@ -25,4 +25,14 @@ export default class matchController {
       console.log(e);
     }
   }
+
+  static async changeProgress(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = await matchService.changeProgress(id);
+      return res.status(data.status).json(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }

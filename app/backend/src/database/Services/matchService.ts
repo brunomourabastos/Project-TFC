@@ -33,4 +33,9 @@ export default class matchService {
       inProgress: true });
     return { status: 201, data: createdMatch };
   }
+
+  static async changeProgress(id: string) {
+    await matchModel.update({ inProgress: false }, { where: { id } });
+    return { status: 200, data: { message: 'Finished' } };
+  }
 }
