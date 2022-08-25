@@ -6,7 +6,8 @@ export default class matchService {
     const matches = await matchModel.findAll({ include: [
       { model: Team, as: 'teamHome', attributes: ['teamName'] },
       { model: Team, as: 'teamAway', attributes: ['teamName'] },
-    ] });
+    ],
+    attributes: { exclude: ['away_team', 'home_team'] } });
     return { status: 200, data: matches };
   }
 
@@ -15,6 +16,16 @@ export default class matchService {
       include: [
         { model: Team, as: 'teamHome', attributes: ['teamName'] },
         { model: Team, as: 'teamAway', attributes: ['teamName'] },
+      ],
+    });
+    return { status: 200, data: matches };
+  }
+
+  static async finishedMatches(id: number | string) {
+    const matches = await matchModel.findAll({ where: { inProgress: 'false', homeTeam: id },
+      include: [
+        { model: Team, as: 'teamHome', attributes: { exclude: ['id'] } },
+        { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } },
       ],
     });
     return { status: 200, data: matches };
