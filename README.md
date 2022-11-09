@@ -3,11 +3,13 @@
 
  O `TFC` é um site informativo sobre partidas e classificações de futebol! 
  
- 
-## Tecnologias usadas
+<details>
+ <summary><strong>Tecnologias Utilizadas</strong></summary><br />
 
 Back-End:
 > Desenvolvido usando: Projeto Dockerizado. CRUD com TypeScript, utilizando ORM. Modelagem de dados com MySQL através do Sequelize; Sequelize, API REST com endpoints para consumir os models criados.
+ 
+</details>
  
   Nesse projeto, foi construído **um back-end dockerizado utilizando modelagem de dados através do Sequelize**. O desenvolvimento **respeitou regras de negócio** providas no projeto e **a API é capaz de ser consumida por um front-end já provido nesse projeto**.⚽️
   
